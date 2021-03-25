@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "_macros.html" as macros %}
+
+
+{% block page_content %}
+<!--     <div class="container">
+        <div class="row" style="padding:30px 20px;">
+            <div class="col-md-12">
+            {{ wtf.quick_form(form) }}
+            </div>
+        </div>
+    </div> -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+            {% include '_posts.html' %} 
+            </div>
+            <div class="col-md-3">
+                <div class="share mrl the-font" style="background:#fbfaf5;box-shadow:5px 5px 20px #CCC;width:260px;">
+                    <div style="padding:10px;">
+                        <div style="border-bottom:1px solid #DAD4D4;;padding:10px 10px;">
+                            <h5><i class="fa fa-paperclip" aria-hidden="true"></i> 分类</h5>
+                        </div>
+                        <ul>
+                            {% for category in g.categories %}
+                                {% if category.posts.count() %}
+                                <li class="presentation" style="padding-top:0px;"><a href="{{ url_for('main.category',id=category.id)}}"><p><span style="font-size:15px;"><i class="fa fa-search" aria-hidden="true"></i> {{ category.name|upper }}</span><span class="badge text-right" style="float:right">{{ category.posts.count() }}</span></p></a></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% if pagination %}
+            <div  class="col-md-12">
+                {{ macros.pagination_widget(pagination, '.index') }}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{{ pagedown.include_pagedown() }}
+{% endblock %}

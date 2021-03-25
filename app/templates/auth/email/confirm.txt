@@ -1,0 +1,13 @@
+Dear {{ user.username }},
+
+欢迎注册唐高智的博客网站!
+
+请点击以下链接确认您的账户:
+
+{{ url_for('auth.confirm', token=token, _external=True) }}
+
+祝您生活愉快！
+
+唐高智tgz
+
+注意：这是系统发送的邮件，不要回复此邮件！

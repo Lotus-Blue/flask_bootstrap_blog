@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% import "_macros.html" as macros %}
+
+{% block title %}评论管理{% endblock %}
+
+{% block page_content %}
+<div class="container">
+    <div class="row">
+        <div class="page-header">
+            <h3>评论管理：</h3>
+        </div>
+        {% set moderate = True %}
+        {% include '_comments.html' %}
+        {% if pagination %}
+        <div style="float:right">
+            {{ macros.pagination_widget(pagination, '.moderate') }}
+        </div>
+    </div>
+</div>
+
+{% endif %}
+{% endblock %}
